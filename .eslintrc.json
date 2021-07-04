@@ -3,16 +3,12 @@
     "env": {
         "node": true
     },
-    "plugins": ["@babel"],
-    "extends": ["plugin:vue/vue3-essential", "eslint:recommended", "prettier"],
+    "plugins": ["prettier"],
+    "extends": ["plugin:vue/vue3-essential", "eslint:recommended"],
     "parserOptions": {
         "parser": "babel-eslint"
     },
     "rules": {
-        "@babel/new-cap": "error",
-        "@babel/no-invalid-this": "error",
-        "@babel/no-unused-expressions": "error",
-        "@babel/object-curly-spacing": "error",
-        "@babel/semi": "error"
+        "prettier/prettier": "error"
     }
 }
