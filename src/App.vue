@@ -5,8 +5,8 @@ div Tesseract
 </template>
 
 <script>
-import { createWorker } from 'tesseract.js'
-import path from 'path'
+import Tesseract from 'tesseract.js'
+// import path from 'path'
 
 export default {
     name: 'App',
@@ -20,10 +20,10 @@ export default {
     },
 
     mounted() {
-        this.worker = createWorker({
-            langPath: path.join(__dirname, '..', 'lang-data'),
-            logger: m => console.log(m),
-        })
+        // this.worker = createWorker({
+        //     langPath: path.join(__dirname, '..', 'lang-data'),
+        //     logger: m => console.log(m),
+        // })
     },
 
     methods: {
@@ -33,22 +33,22 @@ export default {
             this.reader.readAsText(this.file)
             console.log(this.file)
 
-            // Tesseract.recognize(this.file.name, 'eng', {
-            //     logger: m => console.log(m),
-            // }).then(({ data: { text } }) => {
-            //     console.log(text)
-            // })
+            Tesseract.recognize(this.file.name, 'eng', {
+                logger: m => console.log(m),
+            }).then(({ data: { text } }) => {
+                console.log(text)
+            })
 
-            await this.worker.load()
-            await this.worker.loadLanguage('eng')
-            await this.worker.initialize('eng')
-            const {
-                data: { text },
-            } = await this.worker.recognize(
-                path.join(__dirname, '..', 'images', this.file.name)
-            )
-            console.log(text)
-            await this.worker.terminate()
+            // await this.worker.load()
+            // await this.worker.loadLanguage('eng')
+            // await this.worker.initialize('eng')
+            // const {
+            //     data: { text },
+            // } = await this.worker.recognize(
+            //     path.join(__dirname, '..', '', this.file.name)
+            // )
+            // console.log(text)
+            // await this.worker.terminate()
         },
     },
 }
