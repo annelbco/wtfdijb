@@ -19,13 +19,6 @@ export default {
         }
     },
 
-    mounted() {
-        // this.worker = createWorker({
-        //     langPath: path.join(__dirname, '..', 'lang-data'),
-        //     logger: m => console.log(m),
-        // })
-    },
-
     methods: {
         async getFile(event) {
             this.file = event.target.files[0]
@@ -38,17 +31,6 @@ export default {
             }).then(({ data: { text } }) => {
                 console.log(text)
             })
-
-            // await this.worker.load()
-            // await this.worker.loadLanguage('eng')
-            // await this.worker.initialize('eng')
-            // const {
-            //     data: { text },
-            // } = await this.worker.recognize(
-            //     path.join(__dirname, '..', '', this.file.name)
-            // )
-            // console.log(text)
-            // await this.worker.terminate()
         },
     },
 }
