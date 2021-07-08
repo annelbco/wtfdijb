@@ -6,7 +6,7 @@ div Tesseract
 
 <script>
 import Tesseract from 'tesseract.js'
-// import path from 'path'
+import UploadFileService from './services/UploadFileService'
 
 export default {
     name: 'App',
@@ -16,15 +16,28 @@ export default {
             file: '',
             reader: '',
             worker: '',
+            fileInfos: [],
         }
     },
 
     methods: {
+        upload() {
+            // .then((resp) =>)
+        },
         async getFile(event) {
             this.file = event.target.files[0]
             this.reader = new FileReader()
             this.reader.readAsText(this.file)
             console.log(this.file)
+            UploadFileService.upload(this.file)
+                .then(resp => {
+                    console.log(resp)
+                    return UploadFileService.getFiles()
+                })
+                .then(files => {
+                    console.log(files)
+                    this.fileInfos = files.data
+                })
 
             Tesseract.recognize(this.file.name, 'eng', {
                 logger: m => console.log(m),
